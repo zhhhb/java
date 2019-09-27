@@ -1,0 +1,26 @@
+//有一次，他在思考一个只包括0和1长度为n的字符串。考虑下面的几个操作：我们可以选择字符串中任何两个相邻位置的字符，如果一个是0，一个是1，那么我们可以把这两个字符从字符串中删除，这样以后字符串长度变成n-2。
+
+现在wxa想知道进行这样的操作后，字符串最短的长度是多少。请你帮助他计算。
+import java.util.Scanner;
+import java.lang.StringBuilder;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n= sc.nextInt();
+        String s = sc.next();
+        StringBuilder sb = new StringBuilder();
+        sb.append(s);
+        int i=0;
+        while(i<sb.length() - 1){
+            if ((sb.charAt(i) == '1' && sb.charAt(i + 1) == '0') || (sb.charAt(i) == '0' && sb.charAt(i + 1) == '1')) {
+                sb.delete(i,i+2);
+                i = 0;
+            }
+            else{
+                i++;
+            }
+        }
+        System.out.println(sb.length());
+    }
+}
