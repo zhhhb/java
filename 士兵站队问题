@@ -1,0 +1,27 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class 士兵站队问题 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] x = new int[10005];
+        int[] y = new int[10005];
+        for(int i=0;i<n;i++) {
+            x[i] = sc.nextInt();
+            y[i] = sc.nextInt();
+        }
+        Arrays.sort(x,0,n);
+        Arrays.sort(y,0,n);
+        for(int i=0;i<n;i++) {
+            x[i] -= i;
+        }
+        Arrays.sort(x,0,n);
+        int xRet = 0, yRet = 0;
+        for(int i=0;i<n;i++) {
+            xRet += Math.abs(x[i] - x[n/2]);
+            yRet += Math.abs(y[i] - y[n/2]);
+        }
+        System.out.println(xRet + yRet);
+    }
+}
