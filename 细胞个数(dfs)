@@ -1,0 +1,34 @@
+import java.util.Scanner;
+public class 细胞个数 {
+    static int[][] a = new int[105][105];
+    public static void dfs(int x, int y, int n, int m, int[][] a) {
+        if( (x<0) || (y<0) || a[x][y] == 0) return;
+        a[x][y] = 0;
+        int[] dx = new int[]{-1, 1, 0, 0};
+        int[] dy = new int[]{ 0, 0,-1, 1};
+        for(int k=0;k<4;k++) {
+            dfs(dx[k]+x, dy[k]+y, n, m, a);
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m= sc.nextInt();
+        int iRet = 0;
+        for(int i = 0; i < n; i++) {
+            String s = sc.next();
+            for (int j = 0; j < m; j++) {
+                a[i][j] = s.charAt(j) - '0';
+            }
+        }
+        for(int i=0;i<n;i++) {
+            for(int j=0;j<m;j++) {
+                if(a[i][j] != 0) {
+                    iRet++;
+                    dfs(i, j, n, m, a);
+                }
+            }
+        }
+        System.out.println(iRet);
+    }
+}
