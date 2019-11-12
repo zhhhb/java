@@ -1,0 +1,32 @@
+import java.util.Arrays;
+import java.util.Scanner;
+public class 奇怪的电梯 {
+    static int[] k = new int[205];
+    static int iMin = 0x7FFFFFFF;
+    static int[] vis = new int[205];
+    static int n;
+    public static void dfs(int i, int b, int iRet) {
+        if(i == b) {
+            if(iRet < iMin) iMin = iRet;
+        }
+        else {
+            if(iRet < iMin) {
+                vis[i] = 1;
+                if(i+k[i] <= n && vis[i+k[i]] == 0) dfs(i+k[i],b,iRet+1);
+                if(i-k[i] >= 1 && vis[i-k[i]] == 0) dfs(i-k[i],b,iRet+1);
+                vis[i] = 0;
+            }
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        for(int i=1;i<=n;i++) k[i] = sc.nextInt();
+        Arrays.fill(vis,0);
+        dfs(a,b,0);
+        if(iMin == 0x7FFFFFFF) System.out.println(-1);
+        else System.out.println(iMin);
+    }
+}
