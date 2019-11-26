@@ -1,0 +1,19 @@
+import java.util.Scanner;
+public class 字符串训练之wjn比较单词大小 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t =sc.nextInt();
+        while(t-- > 0) {
+            int n=sc.nextInt();
+            String Smax = new String();
+            for(int i=0;i<n;i++) {
+                String s1 = sc.next();
+                if(s1.length() == Smax.length()) {
+                    if(Smax.compareTo(s1) < 0) Smax = s1;
+                }
+                if(s1.length() > Smax.length()) Smax = s1;
+            }
+            System.out.println(Smax);
+        }
+    }
+}
