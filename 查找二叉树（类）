@@ -1,0 +1,34 @@
+import java.util.Scanner;
+public class 查找二叉树 {
+    static class Tree{
+        int l,r,data;
+    }
+    static Tree[] t = new Tree[105];
+    static int[] ans = new int[105];
+    static int iTemp = 1;
+    static void dfs(int root) {
+        if(t[root].l != 0) dfs(t[root].l);
+        ans[iTemp] = t[root].data;
+        iTemp++;
+        if(t[root].r != 0) dfs(t[root].r);
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int x = sc.nextInt();
+
+        for(int i=1;i<=n;i++) {
+            t[i] = new Tree();
+            t[i].data = sc.nextInt();
+            t[i].l = sc.nextInt();
+            t[i].r = sc.nextInt();
+        }
+        dfs(1);
+        for(int i=1;i<=n;i++) {
+            if(ans[i] == x) {
+                System.out.println(i);
+                break;
+            }
+        }
+    }
+}
