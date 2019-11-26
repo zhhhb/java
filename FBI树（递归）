@@ -1,0 +1,27 @@
+import java.util.Scanner;
+public class FBI树 {
+    public static String s;
+    static void mt(int a, int b) {
+        if(a!=b) {
+            mt(a,(a+b)/2);
+            mt((a+b)/2+1,b);
+        }
+        int isB = 0, isI = 0;
+        for(int i=0;i<=b-a;i++) {
+            if(s.charAt(i+a) == '1') isI = 1;
+            if(s.charAt(i+a) == '0') isB = 1;
+        }
+        if(isB == 1 && isI == 1) System.out.print("F");
+        else if(isB == 1) System.out.print("B");
+        else if(isI == 1) System.out.print("I");
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        double dTemp = Math.pow(2, N);
+        int n = (int) (dTemp);
+        s = sc.next();
+        mt(0,n-1);
+        System.out.println("");
+    }
+}
