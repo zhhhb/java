@@ -1,0 +1,38 @@
+//并查集
+
+import java.util.Scanner;
+public class 家庭问题 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int[] pre = new int[105];
+        int[] member = new int[105];
+        for(int i=1;i<=n;i++) {
+            pre[i] = i;
+            member[i] = 1;
+        }
+        for(int i=1;i<=k;i++) {
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            if(a > b) {
+                int iTemp = a;
+                a = b;
+                b = iTemp;
+            }
+            pre[b] = a;
+        }
+        for(int i=n;i>0;i--) {
+            if(pre[i] != i) {
+                member[pre[i]] = member[pre[i]] + member[i];
+                member[i] = 0;
+            }
+        }
+        int fNum = 0, mMax = 0;
+        for(int i=1;i<=n;i++) {
+            if(member[i] > mMax) mMax = member[i];
+            if(member[i] != 0) fNum++;
+        }
+        System.out.println(fNum + " " + mMax);
+    }
+}
